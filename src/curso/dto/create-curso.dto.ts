@@ -8,4 +8,5 @@ export class CreateCursoDto {
   @IsNotEmpty()
   @Length(1, 255)
   CargaHoraria: number;
+  universidadeId: any;
 }

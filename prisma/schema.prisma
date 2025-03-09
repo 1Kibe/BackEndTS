@@ -27,7 +27,7 @@ model curso {
 model universidade {
   id             Int      @id @default(autoincrement())
   nome           String   @db.VarChar(255)
-  CNPJ           String   @db.VarChar(14)
+  CNPJ           String   @db.VarChar(20)
   datacriacao    DateTime @default(now()) @db.Timestamp(0)
   datatualizacao DateTime @default(now()) @db.Timestamp(0)
 }

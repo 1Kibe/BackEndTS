@@ -1,8 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common'; // ✅ Importação corrigida
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCursoDto } from './dto/create-curso.dto';
 import { UpdateCursoDto } from './dto/update-curso.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-
 
 @Injectable()
 export class CursoService {
@@ -13,11 +12,11 @@ export class CursoService {
       return await this.prisma.curso.create({
         data: {
           nome: createCursoDto.nome,
-          CargaHoraria: createCursoDto.CargaHoraria
+          CargaHoraria: Number(createCursoDto.CargaHoraria),
         },
       });
-    } catch (error) { 
-      throw new Error('Erro ao criar curso: ' + error.message); // ✅ Corrigida mensagem de erro
+    } catch (error) {
+      throw new Error('Erro ao criar curso: ' + error.message);
     }
   }
 
@@ -25,7 +24,7 @@ export class CursoService {
     return this.prisma.curso.findMany();
   }
 
-  async findOne(id: number) { // ✅ Mudado de `string` para `number`
+  async findOne(id: number) {
     const curso = await this.prisma.curso.findUnique({
       where: { id },
     });
@@ -37,8 +36,8 @@ export class CursoService {
     return curso;
   }
 
-  async update(id: number, updateCursoDto: UpdateCursoDto) { // ✅ Mudado de `string` para `number`
-    await this.findOne(id); // Verifica se o curso existe antes de atualizar
+  async update(id: number, updateCursoDto: UpdateCursoDto) {
+    await this.findOne(id);
 
     try {
       return await this.prisma.curso.update({
@@ -50,8 +49,8 @@ export class CursoService {
     }
   }
 
-  async remove(id: number) { // ✅ Mudado de `string` para `number`
-    await this.findOne(id); // Verifica se o curso existe antes de remover
+  async remove(id: number) {
+    await this.findOne(id);
 
     try {
       return await this.prisma.curso.delete({
