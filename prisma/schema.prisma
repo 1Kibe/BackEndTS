@@ -9,8 +9,8 @@ datasource db {
 
 model usuario {
   id             Int      @id @default(autoincrement())
-  nome           String   @db.VarChar(255)
-  email          String   @db.VarChar(255)
+  nome           String   @db.VarChar(255) 
+  email          String   @db.VarChar(255) @unique
   senha          String   @db.VarChar(255)
   datacriacao    DateTime @default(now()) @db.Timestamp(0)
   datatualizacao DateTime @default(now()) @db.Timestamp(0)
@@ -27,7 +27,7 @@ model curso {
 model universidade {
   id             Int      @id @default(autoincrement())
   nome           String   @db.VarChar(255)
-  CNPJ           String   @db.VarChar(20)
+  CNPJ           String   @db.VarChar(20) @unique
   datacriacao    DateTime @default(now()) @db.Timestamp(0)
   datatualizacao DateTime @default(now()) @db.Timestamp(0)
 }
